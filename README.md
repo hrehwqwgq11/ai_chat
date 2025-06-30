@@ -1,24 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cursor AI Chat
+
+A modern AI chat application built with Next.js 15, featuring real-time streaming responses, multiple AI models, and a beautiful user interface.
+
+## Features
+
+- 🤖 **Multiple AI Models**: Support for various free models via OpenRouter
+- 💬 **Real-time Streaming**: Live streaming responses for natural conversations
+- 🎨 **Modern UI**: Clean, responsive design with dark/light theme support
+- 📱 **Mobile Friendly**: Optimized for all device sizes
+- 💾 **Conversation History**: Save and manage your chat history
+- ⚙️ **Customizable Settings**: Personalize your chat experience
+- 🔄 **Export/Import**: Backup and restore your conversations
+
+## Available Models
+
+- **Llama 3.2 3B** (Meta) - Fast and efficient
+- **Llama 3.2 1B** (Meta) - Lightweight for simple tasks
+- **Gemma 2 9B** (Google) - Instruction-tuned model
+- **Phi-3 Mini** (Microsoft) - Compact and capable
+- **Qwen 2 7B** (Alibaba) - Multilingual support
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Set Up OpenRouter API (Optional)
+
+For real AI responses, you'll need an OpenRouter API key:
+
+1. Sign up at [OpenRouter](https://openrouter.ai/)
+2. Get your free API key
+3. Copy `.env.example` to `.env.local`
+4. Add your API key:
+
+```bash
+NEXT_PUBLIC_OPENROUTER_API_KEY=your_api_key_here
+```
+
+**Note**: The app works without an API key using mock responses for demonstration.
+
+### 3. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to start chatting!
 
 ## Learn More
 
