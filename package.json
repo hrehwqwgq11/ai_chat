@@ -2,11 +2,14 @@
   "name": "ai_chat",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.12.4",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "install": "pnpm install",
+    "clean": "rm -rf .next node_modules pnpm-lock.yaml && pnpm install"
   },
   "dependencies": {
     "@heroui/react": "^2.7.11",

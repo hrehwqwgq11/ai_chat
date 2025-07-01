@@ -14,18 +14,26 @@ A modern AI chat application built with Next.js 15, featuring real-time streamin
 
 ## Available Models
 
-- **Llama 3.2 3B** (Meta) - Fast and efficient
-- **Llama 3.2 1B** (Meta) - Lightweight for simple tasks
-- **Gemma 2 9B** (Google) - Instruction-tuned model
-- **Phi-3 Mini** (Microsoft) - Compact and capable
-- **Qwen 2 7B** (Alibaba) - Multilingual support
+- **Llama 3.3 70B** (Meta) - Latest large model with enhanced capabilities
+- **Llama 3.3 8B** (Meta) - Balanced performance and efficiency
+- **Llama 3.2 3B/1B** (Meta) - Fast and lightweight options
+- **Llama 3.2 11B Vision** (Meta) - Multimodal with vision capabilities
+- **Gemma 3 12B/1B** (Google) - Latest Gemma models
+- **Gemma 2 9B** (Google) - Efficient instruction-tuned model
+- **Qwen 2.5 72B/7B** (Alibaba) - Large multilingual models
+- **QwQ 32B** (Alibaba) - Reasoning-focused model
+- **Mistral 7B/Small 24B** (Mistral AI) - High-quality open-source models
+- **DeepSeek V3** (DeepSeek) - Advanced reasoning and coding
+- **Phi-3 Mini** (Microsoft) - Compact with large context
+
+All models are available for **free** through OpenRouter!
 
 ## Getting Started
 
 ### 1. Install Dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Set Up OpenRouter API (Optional)
@@ -46,7 +54,7 @@ NEXT_PUBLIC_OPENROUTER_API_KEY=your_api_key_here
 ### 3. Run the Development Server
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to start chatting!
