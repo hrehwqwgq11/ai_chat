@@ -34,7 +34,7 @@ function getApiKey(): string | null {
 // OpenRouter streaming response
 export async function* streamChatResponse(
   messages: Message[],
-  model: string = 'meta-llama/llama-3.2-3b-instruct:free'
+  model: string = 'meta-llama/llama-3.3-70b-instruct:free'
 ): AsyncGenerator<string, void, unknown> {
   const apiKey = getApiKey()
   
@@ -155,7 +155,7 @@ async function* streamMockResponse(
 // Simple chat completion for non-streaming
 export async function getChatCompletion(
   messages: Message[],
-  model: string = 'gpt-4'
+  model: string = 'meta-llama/llama-3.3-70b-instruct:free'
 ): Promise<string> {
   // Simulate API delay
   await delay(1000 + Math.random() * 2000)

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import { MainLayout } from '@/components/layout/main-layout'
 import { useChatStore } from '@/lib/store'
+import { useTheme } from '@/components/providers/theme-provider'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -28,6 +29,8 @@ export default function SettingsPage() {
     conversations,
     deleteConversation
   } = useChatStore()
+  
+  const { setTheme } = useTheme()
 
   const [localSettings, setLocalSettings] = useState(settings)
   const [hasChanges, setHasChanges] = useState(false)
@@ -35,6 +38,11 @@ export default function SettingsPage() {
   const handleSettingChange = (key: keyof typeof settings, value: any) => {
     setLocalSettings(prev => ({ ...prev, [key]: value }))
     setHasChanges(true)
+    
+    // Update theme immediately for visual feedback
+    if (key === 'theme') {
+      setTheme(value as 'light' | 'dark' | 'system')
+    }
   }
 
   const handleSave = () => {
