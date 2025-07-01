@@ -48,6 +48,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark mode styles - both for system preference and explicit dark class */
 @media (prefers-color-scheme: dark) {
   :root {
     --brand-primary: #FFFFFF;
@@ -62,6 +63,21 @@
     --border-light: #2D3748;
     --border-focus: #60A5FA;
   }
+}
+
+/* Explicit dark class for manual theme switching */
+.dark {
+  --brand-primary: #FFFFFF;
+  --text-primary: #FFFFFF;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --bg-page: #0A0A0A;
+  --bg-section: #111111;
+  --bg-card: #1A1A1A;
+  --bg-card-hover: #222222;
+  --border-default: #374151;
+  --border-light: #2D3748;
+  --border-focus: #60A5FA;
 }
 
 body {

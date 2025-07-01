@@ -24,8 +24,15 @@ A modern AI chat application built with Next.js 15, featuring real-time streamin
 
 ### 1. Install Dependencies
 
+This project uses **pnpm** as the package manager for better performance and disk efficiency:
+
 ```bash
-npm install
+pnpm install
+```
+
+If you don't have pnpm installed:
+```bash
+npm install -g pnpm
 ```
 
 ### 2. Set Up OpenRouter API (Optional)
@@ -46,10 +53,38 @@ NEXT_PUBLIC_OPENROUTER_API_KEY=your_api_key_here
 ### 3. Run the Development Server
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to start chatting!
+
+## Recent Updates
+
+### ✅ Fixed Dark Mode Toggle
+- **Issue**: Dark mode toggle wasn't working properly
+- **Solution**: 
+  - Fixed CSS to include explicit `.dark` class styles alongside media queries
+  - Improved ThemeProvider to properly sync with the store
+  - Simplified theme logic to avoid duplication between components
+  - All three theme modes now work correctly: Light, Dark, and System
+
+### 📦 Migrated from npm to pnpm
+- **Benefits**: 
+  - Faster installation and better disk efficiency
+  - Improved dependency resolution
+  - Better monorepo support
+- **Changes**:
+  - Removed `package-lock.json` and replaced with `pnpm-lock.yaml`
+  - Updated package.json with pnpm-specific configurations
+  - Added `.npmrc` for pnpm settings
+
+## Available Scripts
+
+- `pnpm dev` - Start development server with Turbopack
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm install:clean` - Clean install (removes node_modules and lock file)
 
 ## Learn More
 

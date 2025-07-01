@@ -26,18 +26,17 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 export function ThemeProvider({
   children,
   defaultTheme = 'system',
-  storageKey = 'cursor-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const { settings } = useChatStore()
+  const { settings, updateSettings } = useChatStore()
   const [theme, setTheme] = useState<Theme>(settings.theme as Theme || defaultTheme)
 
-  useEffect(() => {
+  const applyTheme = (currentTheme: Theme) => {
     const root = window.document.documentElement
 
     root.classList.remove('light', 'dark')
 
-    if (theme === 'system') {
+    if (currentTheme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
         .matches
         ? 'dark'
@@ -47,18 +46,36 @@ export function ThemeProvider({
       return
     }
 
-    root.classList.add(theme)
+    root.classList.add(currentTheme)
+  }
+
+  useEffect(() => {
+    applyTheme(theme)
   }, [theme])
 
   // Update theme when store settings change
   useEffect(() => {
-    setTheme(settings.theme as Theme)
-  }, [settings.theme])
+    const newTheme = settings.theme as Theme
+    if (newTheme !== theme) {
+      setTheme(newTheme)
+    }
+  }, [settings.theme, theme])
+
+  // Listen for system theme changes when in system mode
+  useEffect(() => {
+    if (theme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+      const handleChange = () => applyTheme(theme)
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [theme])
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      setTheme(theme)
+    setTheme: (newTheme: Theme) => {
+      setTheme(newTheme)
+      updateSettings({ theme: newTheme })
     },
   }
 

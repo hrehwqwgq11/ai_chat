@@ -6,8 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "install:clean": "rm -rf node_modules pnpm-lock.yaml && pnpm install"
   },
+  "packageManager": "pnpm@9.0.0",
   "dependencies": {
     "@heroui/react": "^2.7.11",
     "@heroui/theme": "^2.4.17",
