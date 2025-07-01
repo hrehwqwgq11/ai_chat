@@ -76,26 +76,26 @@ export function Sidebar() {
 
   if (sidebarCollapsed) {
     return (
-      <div className="fixed left-0 top-0 z-40 h-full w-16 bg-[var(--bg-card)] border-r border-[var(--border-light)] flex flex-col items-center py-4">
+      <div className="fixed left-0 top-0 z-40 h-full w-16 bg-[var(--bg-card)] border-r border-[var(--border-light)] flex flex-col items-center py-6 shadow-[var(--shadow-card)]">
         <Button
           variant="ghost"
           size="icon"
           onClick={toggleSidebar}
-          className="mb-4"
+          className="mb-6 hover:bg-[var(--bg-card-hover)] rounded-xl"
         >
           <Menu className="h-5 w-5" />
         </Button>
         
         <Button
-          variant="ghost"
+          variant="primary"
           size="icon"
           onClick={handleNewChat}
-          className="mb-4"
+          className="mb-6 rounded-xl shadow-[var(--shadow-button)]"
         >
           <Plus className="h-5 w-5" />
         </Button>
 
-        <nav className="flex flex-col space-y-2">
+        <nav className="flex flex-col space-y-3">
           {navigation.map((item) => {
             const Icon = item.icon
             const isActive = pathname === item.href
@@ -105,8 +105,8 @@ export function Sidebar() {
                   variant="ghost"
                   size="icon"
                   className={cn(
-                    "w-12 h-12",
-                    isActive && "bg-[var(--bg-section)] text-[var(--text-primary)]"
+                    "w-12 h-12 rounded-xl transition-all duration-200",
+                    isActive && "bg-[var(--bg-card-hover)] text-[var(--text-primary)] shadow-[var(--shadow-button)]"
                   )}
                 >
                   <Icon className="h-5 w-5" />
@@ -120,34 +120,37 @@ export function Sidebar() {
   }
 
   return (
-    <div className="fixed left-0 top-0 z-40 h-full w-80 bg-[var(--bg-card)] border-r border-[var(--border-light)] flex flex-col">
+    <div className="fixed left-0 top-0 z-40 h-full w-80 bg-[var(--bg-card)] border-r border-[var(--border-light)] flex flex-col shadow-[var(--shadow-card)]">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-[var(--border-light)]">
-        <h1 className="text-xl font-bold text-[var(--text-primary)]">Cursor</h1>
+      <div className="flex items-center justify-between p-6 border-b border-[var(--border-light)]">
+        <h1 className="text-xl font-bold text-[var(--text-primary)] bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+          AI Chat
+        </h1>
         <Button
           variant="ghost"
           size="icon"
           onClick={toggleSidebar}
+          className="hover:bg-[var(--bg-card-hover)] rounded-xl"
         >
           <X className="h-5 w-5" />
         </Button>
       </div>
 
       {/* New Chat Button */}
-      <div className="p-4">
+      <div className="p-6">
         <Button
           onClick={handleNewChat}
-          className="w-full justify-start"
-          variant="gradient"
+          className="w-full justify-start rounded-xl shadow-[var(--shadow-button)] hover:shadow-[var(--shadow-button-hover)]"
+          variant="primary"
         >
-          <Plus className="h-4 w-4 mr-2" />
+          <Plus className="h-4 w-4 mr-3" />
           New Chat
         </Button>
       </div>
 
       {/* Navigation */}
-      <nav className="px-4 pb-4">
-        <div className="space-y-1">
+      <nav className="px-6 pb-4">
+        <div className="space-y-2">
           {navigation.map((item) => {
             const Icon = item.icon
             const isActive = pathname === item.href
@@ -156,11 +159,11 @@ export function Sidebar() {
                 <Button
                   variant="ghost"
                   className={cn(
-                    "w-full justify-start",
-                    isActive && "bg-[var(--bg-section)] text-[var(--text-primary)]"
+                    "w-full justify-start rounded-xl transition-all duration-200",
+                    isActive && "bg-[var(--bg-card-hover)] text-[var(--text-primary)] shadow-[var(--shadow-button)]"
                   )}
                 >
-                  <Icon className="h-4 w-4 mr-2" />
+                  <Icon className="h-4 w-4 mr-3" />
                   {item.name}
                 </Button>
               </Link>
@@ -171,19 +174,19 @@ export function Sidebar() {
 
       {/* Conversations List */}
       <div className="flex-1 overflow-hidden">
-        <div className="px-4 pb-2">
-          <h3 className="text-sm font-medium text-[var(--text-secondary)] mb-2">
+        <div className="px-6 pb-3">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] mb-3 uppercase tracking-wider">
             Recent Conversations
           </h3>
         </div>
         
-        <div className="flex-1 overflow-y-auto px-4 space-y-1">
+        <div className="flex-1 overflow-y-auto px-6 space-y-2">
           {conversations.map((conversation) => (
             <div
               key={conversation.id}
               className={cn(
-                "group relative rounded-lg p-3 cursor-pointer transition-colors hover:bg-[var(--bg-section)]",
-                currentConversationId === conversation.id && "bg-[var(--bg-section)]"
+                "group relative rounded-xl p-3 cursor-pointer transition-all duration-200 hover:bg-[var(--bg-card-hover)] hover:shadow-[var(--shadow-button)]",
+                currentConversationId === conversation.id && "bg-[var(--bg-card-hover)] shadow-[var(--shadow-button)] border-l-2 border-[var(--border-focus)]"
               )}
               onClick={() => setCurrentConversation(conversation.id)}
             >

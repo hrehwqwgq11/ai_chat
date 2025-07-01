@@ -93,27 +93,27 @@ export function Header() {
           </Button>
           
           {showModelSelector && (
-            <div className="absolute right-0 top-full mt-2 w-64 bg-[var(--bg-card)] border border-[var(--border-default)] rounded-lg shadow-[var(--shadow-card)] py-2 z-50">
+            <div className="absolute right-0 top-full mt-2 w-72 bg-[var(--bg-card)] border border-[var(--border-light)] rounded-xl shadow-[var(--shadow-card)] py-2 z-50 backdrop-blur-sm">
               {availableModels.map((model) => (
                 <button
                   key={model.id}
                   onClick={() => handleModelChange(model.id)}
                   className={cn(
-                    "w-full text-left px-4 py-3 hover:bg-[var(--bg-section)] transition-colors",
-                    model.id === currentModel?.id && "bg-[var(--bg-section)]"
+                    "w-full text-left px-4 py-3 hover:bg-[var(--bg-card-hover)] transition-all duration-200 rounded-lg mx-2",
+                    model.id === currentModel?.id && "bg-[var(--bg-card-hover)] border-l-2 border-[var(--border-focus)]"
                   )}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-[var(--text-primary)]">
+                      <p className="text-sm font-semibold text-[var(--text-primary)]">
                         {model.name}
                       </p>
-                      <p className="text-xs text-[var(--text-secondary)]">
+                      <p className="text-xs text-[var(--text-muted)] mt-1">
                         {model.description}
                       </p>
                     </div>
                     {!model.available && (
-                      <span className="text-xs text-[var(--text-muted)] bg-[var(--bg-section)] px-2 py-1 rounded">
+                      <span className="text-xs text-[var(--text-subtle)] bg-[var(--border-default)] px-2 py-1 rounded-md">
                         Soon
                       </span>
                     )}
@@ -125,14 +125,14 @@ export function Header() {
         </div>
 
         {/* Theme Toggle */}
-        <div className="flex items-center bg-[var(--bg-section)] rounded-lg p-1">
+        <div className="flex items-center bg-[var(--bg-section)] rounded-xl p-1 border border-[var(--border-light)]">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => handleThemeChange('light')}
             className={cn(
-              "h-8 w-8",
-              theme === 'light' && "bg-[var(--bg-card)] shadow-sm"
+              "h-8 w-8 rounded-lg transition-all duration-200",
+              theme === 'light' && "bg-[var(--bg-card)] shadow-[var(--shadow-button)] text-[var(--text-primary)]"
             )}
           >
             <Sun className="h-4 w-4" />
@@ -142,8 +142,8 @@ export function Header() {
             size="icon"
             onClick={() => handleThemeChange('system')}
             className={cn(
-              "h-8 w-8",
-              theme === 'system' && "bg-[var(--bg-card)] shadow-sm"
+              "h-8 w-8 rounded-lg transition-all duration-200",
+              theme === 'system' && "bg-[var(--bg-card)] shadow-[var(--shadow-button)] text-[var(--text-primary)]"
             )}
           >
             <Monitor className="h-4 w-4" />
@@ -153,8 +153,8 @@ export function Header() {
             size="icon"
             onClick={() => handleThemeChange('dark')}
             className={cn(
-              "h-8 w-8",
-              theme === 'dark' && "bg-[var(--bg-card)] shadow-sm"
+              "h-8 w-8 rounded-lg transition-all duration-200",
+              theme === 'dark' && "bg-[var(--bg-card)] shadow-[var(--shadow-button)] text-[var(--text-primary)]"
             )}
           >
             <Moon className="h-4 w-4" />

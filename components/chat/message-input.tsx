@@ -69,18 +69,18 @@ export function MessageInput({
   const canSend = message.trim() && !disabled && !isGenerating
 
   return (
-    <div className="border-t border-[var(--border-light)] bg-[var(--bg-card)] p-4">
+    <div className="border-t border-[var(--border-light)] bg-[var(--bg-card)] p-6">
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
-        <div className="relative flex items-end gap-3">
+        <div className="relative flex items-end gap-4 bg-[var(--bg-section)] rounded-2xl p-4 border border-[var(--border-light)] shadow-[var(--shadow-card)]">
           {/* File attachment button */}
           <Button
             type="button"
             variant="ghost"
             size="icon"
-            className="mb-2 flex-shrink-0"
+            className="mb-1 flex-shrink-0 rounded-xl hover:bg-[var(--bg-card-hover)]"
             disabled={disabled}
           >
-            <Paperclip className="h-4 w-4" />
+            <Paperclip className="h-5 w-5" />
           </Button>
 
           {/* Message input */}
@@ -95,15 +95,16 @@ export function MessageInput({
               placeholder={placeholder}
               disabled={disabled}
               className={cn(
-                "min-h-[44px] max-h-[200px] resize-none pr-12 py-3",
-                "focus:ring-2 focus:ring-[var(--border-focus)] focus:border-transparent"
+                "min-h-[48px] max-h-[200px] resize-none pr-16 py-3 px-4 bg-transparent border-none",
+                "focus:ring-0 focus:border-transparent text-[var(--text-primary)] placeholder:text-[var(--text-subtle)]",
+                "text-base leading-relaxed"
               )}
               rows={1}
             />
             
             {/* Character count */}
             {message.length > 0 && (
-              <div className="absolute bottom-2 right-12 text-xs text-[var(--text-muted)]">
+              <div className="absolute bottom-3 right-16 text-xs text-[var(--text-subtle)] bg-[var(--bg-card)] px-2 py-1 rounded-md">
                 {message.length}
               </div>
             )}
@@ -116,31 +117,31 @@ export function MessageInput({
               onClick={handleStop}
               variant="secondary"
               size="icon"
-              className="mb-2 flex-shrink-0"
+              className="mb-1 flex-shrink-0 rounded-xl w-12 h-12 border border-[var(--border-default)]"
             >
-              <Square className="h-4 w-4" />
+              <Square className="h-5 w-5" />
             </Button>
           ) : (
             <Button
               type="submit"
               disabled={!canSend}
-              variant={canSend ? "gradient" : "secondary"}
+              variant={canSend ? "primary" : "secondary"}
               size="icon"
-              className="mb-2 flex-shrink-0"
+              className="mb-1 flex-shrink-0 rounded-xl w-12 h-12 shadow-[var(--shadow-button)] hover:shadow-[var(--shadow-button-hover)]"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             </Button>
           )}
         </div>
 
         {/* Hints */}
-        <div className="flex items-center justify-between mt-2 text-xs text-[var(--text-muted)]">
+        <div className="flex items-center justify-between mt-3 text-sm text-[var(--text-subtle)]">
           <span>
-            Press Enter to send, Shift+Enter for new line
+            Press <kbd className="px-2 py-1 bg-[var(--bg-section)] rounded-md text-xs">Enter</kbd> to send, <kbd className="px-2 py-1 bg-[var(--bg-section)] rounded-md text-xs">Shift+Enter</kbd> for new line
           </span>
           {isGenerating && (
-            <span className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="flex items-center gap-2 text-[var(--border-focus)]">
+              <div className="w-2 h-2 bg-[var(--border-focus)] rounded-full animate-pulse" />
               Generating response...
             </span>
           )}

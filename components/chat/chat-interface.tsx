@@ -177,26 +177,26 @@ export function ChatInterface() {
   // Empty state
   if (!currentConversation || currentConversation.messages.length === 0) {
     return (
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full bg-[var(--gradient-hero)]">
         <div className="flex-1 flex items-center justify-center">
-          <div className="text-center max-w-md mx-auto px-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Sparkles className="w-8 h-8 text-white" />
+          <div className="text-center max-w-2xl mx-auto px-6">
+            <div className="w-20 h-20 bg-[var(--gradient-primary)] rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-[var(--shadow-button)]">
+              <Sparkles className="w-10 h-10 text-white" />
             </div>
             
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-4">
-              Welcome to Cursor AI
-            </h2>
+            <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-6 bg-[var(--gradient-primary)] bg-clip-text text-transparent">
+              Welcome to AI Chat
+            </h1>
             
-            <p className="text-[var(--text-secondary)] mb-8 leading-relaxed">
-              I'm your AI assistant, ready to help with questions, creative tasks, 
-              coding, analysis, and more. What would you like to explore today?
+            <p className="text-lg text-[var(--text-secondary)] mb-12 leading-relaxed">
+              Your intelligent AI assistant is ready to help with questions, creative tasks, 
+              coding challenges, analysis, and much more. What would you like to explore today?
             </p>
 
-            <div className="grid grid-cols-1 gap-3 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
               {[
                 "Explain a complex concept",
-                "Help with coding problems",
+                "Help with coding problems", 
                 "Creative writing assistance",
                 "Data analysis and insights"
               ].map((suggestion, index) => (
@@ -204,10 +204,10 @@ export function ChatInterface() {
                   key={index}
                   variant="secondary"
                   onClick={() => handleSendMessage(suggestion)}
-                  className="text-left justify-start h-auto p-4"
+                  className="text-left justify-start h-auto p-6 rounded-xl bg-[var(--bg-card)] border border-[var(--border-light)] shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-200"
                 >
-                  <MessageSquare className="w-4 h-4 mr-3 flex-shrink-0" />
-                  <span>{suggestion}</span>
+                  <MessageSquare className="w-5 h-5 mr-4 flex-shrink-0 text-[var(--border-focus)]" />
+                  <span className="text-[var(--text-primary)] font-medium">{suggestion}</span>
                 </Button>
               ))}
             </div>
