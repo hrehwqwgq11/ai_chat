@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { 
   Menu, 
   Sun, 
@@ -11,12 +11,13 @@ import {
   Settings as SettingsIcon
 } from 'lucide-react'
 import { useChatStore } from '@/lib/store'
+import { useTheme } from '@/components/providers/theme-provider'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 export function Header() {
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system')
   const [showModelSelector, setShowModelSelector] = useState(false)
+  const { theme, setTheme } = useTheme()
   
   const {
     getCurrentConversation,
@@ -30,28 +31,8 @@ export function Header() {
 
   const currentConversation = getCurrentConversation()
 
-  useEffect(() => {
-    setTheme(settings.theme)
-  }, [settings.theme])
-
   const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
     setTheme(newTheme)
-    updateSettings({ theme: newTheme })
-    
-    // Apply theme immediately
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else if (newTheme === 'light') {
-      document.documentElement.classList.remove('dark')
-    } else {
-      // System theme
-      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (isDark) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    }
   }
 
   const handleModelChange = (modelId: string) => {
@@ -66,16 +47,7 @@ export function Header() {
     m => m.id === (currentConversation?.model || settings.defaultModel)
   )
 
-  const getThemeIcon = () => {
-    switch (theme) {
-      case 'light':
-        return <Sun className="h-4 w-4" />
-      case 'dark':
-        return <Moon className="h-4 w-4" />
-      default:
-        return <Monitor className="h-4 w-4" />
-    }
-  }
+
 
   return (
     <header className={cn(
